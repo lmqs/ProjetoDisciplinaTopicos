@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f9fe"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Questoes" >
+
+    <Button
+        android:id="@+id/btnMaps"
+        style="@style/DashboardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="86dp"
+        android:layout_marginRight="42dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/maps"
+        android:text="Onde Estamos" />
+
+    <Button
+        android:id="@+id/btnInfor"
+        style="@style/DashboardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnMaps"
+        android:layout_alignBottom="@+id/btnMaps"
+        android:layout_marginRight="21dp"
+        android:layout_toLeftOf="@+id/btnMaps"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/info"
+        android:text="Informações" />
+
+    <Button
+        android:id="@+id/btnIniciar"
+        style="@style/DashboardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnInfor"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="108dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/iniciar"
+        android:text="Iniciar" />
+
+    <Button
+        android:id="@+id/btnResultados"
+        style="@style/DashboardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnIniciar"
+        android:layout_alignBottom="@+id/btnIniciar"
+        android:layout_alignLeft="@+id/btnMaps"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/resultados"
+        android:text="Resultados" />
+
+</RelativeLayout>
