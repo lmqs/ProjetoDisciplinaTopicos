@@ -1,0 +1,72 @@
+package br.com.projetoquestoesconcurso.model;
+
+import java.io.Serializable;
+
+import android.R.integer;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Questao implements Parcelable {
+
+	private int idt_questao;
+	private String dsc_questao;
+	private integer idt_cargo;
+	private 
+
+	public Questao(int idt_questao, String dsc_questao) {
+		this.idt_questao = idt_questao;
+		this.dsc_questao = dsc_questao;
+	}
+
+	public int getIdt_questao() {
+		return idt_questao;
+	}
+
+	public void setIdt_questao(int idt_questao) {
+		this.idt_questao = idt_questao;
+	}
+
+	public String getDsc_questao() {
+		return dsc_questao;
+	}
+
+	public void setDsc_questao(String dsc_questao) {
+		this.dsc_questao = dsc_questao;
+	}
+
+	public integer getIdt_cargo() {
+		return idt_cargo;
+	}
+
+	public void setIdt_cargo(integer idt_cargo) {
+		this.idt_cargo = idt_cargo;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(idt_questao);
+		dest.writeString(dsc_questao);
+	}
+
+	private Questao(Parcel p) {
+		idt_questao = p.readInt();
+		dsc_questao = p.readString();
+	}
+
+	public static final Parcelable.Creator<Questao> CREATOR = new Parcelable.Creator<Questao>() {
+
+		public Questao createFromParcel(Parcel in) {
+			return new Questao(in);
+		}
+
+		public Questao[] newArray(int size) {
+			return new Questao[size];
+		}
+	};
+
+}

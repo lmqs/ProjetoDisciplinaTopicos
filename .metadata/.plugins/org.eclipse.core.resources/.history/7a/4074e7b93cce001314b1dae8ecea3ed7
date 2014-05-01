@@ -1,0 +1,12 @@
+package br.com.projetoquestoesconcurso.List;
+
+public class QuestoesList {
+
+	private int numRounds;
+	private int difficulty;
+	private String playerName;
+	private int right;
+	private int wrong;
+	private int round;
+
+}

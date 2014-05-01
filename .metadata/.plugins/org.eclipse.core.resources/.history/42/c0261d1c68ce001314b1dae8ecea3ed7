@@ -1,0 +1,113 @@
+package br.com.projetoquestoesconcurso.List;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import br.com.projetoquestoesconcurso.model.Questao;
+
+public class QuestoesList implements Parcelable {
+
+	private int codigo;
+	private int numRounds;
+	private int difficulty;
+	private int right;
+	private int wrong;
+	private int round;
+
+	public QuestoesList(Parcel in) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	private List<Questao> questoes = new ArrayList<Questao>();
+
+	public Questao getNextQuestion() {
+
+		// get the question
+		Questao next = questoes.get(this.getRound());
+		// update the round number to the next round
+		this.setRound(this.getRound() + 1);
+		return next;
+	}
+
+	public int getNumRounds() {
+		return numRounds;
+	}
+
+	public void setNumRounds(int numRounds) {
+		this.numRounds = numRounds;
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	public int getRight() {
+		return right;
+	}
+
+	public void setRight(int right) {
+		this.right = right;
+	}
+
+	public int getWrong() {
+		return wrong;
+	}
+
+	public void setWrong(int wrong) {
+		this.wrong = wrong;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
+	}
+
+	public List<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+public QuestoesList() {
+	// TODO Auto-generated constructor stub
+}
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(flags);
+	}
+
+	public static final Parcelable.Creator<QuestoesList> CREATOR = new Parcelable.Creator<QuestoesList>() {
+
+		public QuestoesList createFromParcel(Parcel in) {
+			return new QuestoesList(in);
+		}
+
+		public QuestoesList[] newArray(int size) {
+			return new QuestoesList[size];
+		}
+	};
+
+}

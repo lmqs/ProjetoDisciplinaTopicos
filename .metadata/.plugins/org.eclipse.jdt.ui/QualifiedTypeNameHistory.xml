@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.R.integer"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.Questoes"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.conexao.Conexao"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.GeracaoProvas"/>
+<fullyQualifiedTypeName name="android.app.Application"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.QuestoesApplication"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.os.Bundle"/>
+<fullyQualifiedTypeName name="android.os.Parcelable"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.model.Questao"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.List.QuestoesList"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.model.Alternativa"/>
+<fullyQualifiedTypeName name="android.view.View"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="br.com.projetoquestoesconcurso.R.id"/>
+</qualifiedTypeNameHistroy>

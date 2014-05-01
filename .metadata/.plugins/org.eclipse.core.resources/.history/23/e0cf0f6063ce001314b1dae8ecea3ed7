@@ -1,0 +1,75 @@
+package br.com.projetoquestoesconcurso;
+
+import java.io.IOException;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Toast;
+import br.com.projetoquestoesconcurso.List.QuestoesList;
+import br.com.projetoquestoesconcurso.conexao.Conexao;
+import br.com.projetoquestoesconcurso.model.Questao;
+
+public class Questoes extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_questoes);
+		SQLiteDatabase db = openOrCreateDatabase("bd_concurso", Context.MODE_PRIVATE,null);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.questoes, menu);
+		return true;
+	}
+
+	public void iniciar(View view) {
+
+//		Toast.makeText(getApplicationContext(), "INICIO",
+//				Toast.LENGTH_LONG).show();
+		
+		Intent i;
+		// Get Question set
+		List<Questao> questions = getQuestionSetFromDb();
+		QuestoesList quiz = new QuestoesList();
+		quiz.setQuestoes(questions);
+		// quiz.setNumRounds(getNumQuestions());
+		//((QuestoesApplication) getApplication()).setCurrentQuiz(quiz);
+		Log.i("QUESTOES", "PASSOU PELO METODO DE PEGAR AS QUESTOES DO BANCO");
+		i = new Intent(this, GeracaoProvas.class);
+		
+		Bundle bun = new Bundle();
+		bun.putParcelableArrayList("teste", questions);
+
+		
+		startActivity(i);
+	}
+
+	private List<Questao> getQuestionSetFromDb() throws Error {
+
+		Conexao myDbHelper = new Conexao(this);
+		try {
+			myDbHelper.createDataBase();
+		} catch (IOException ioe) {
+			throw new Error("Unable to create database");
+		}
+		try {
+			myDbHelper.openDataBase();
+		} catch (SQLException sqle) {
+			throw sqle;
+		}
+		List<Questao> questions = myDbHelper.getQuestionSet();
+		myDbHelper.close();
+		return questions;
+	}
+}

@@ -1,0 +1,35 @@
+package br.com.projetoquestoesconcurso.model;
+
+import android.R.integer;
+
+public class Questao {
+
+	private integer idt_questao;
+	private String dsc_questao;
+	private integer idt_cargo;
+
+	public integer getIdt_questao() {
+		return idt_questao;
+	}
+
+	public void setIdt_questao(integer idt_questao) {
+		this.idt_questao = idt_questao;
+	}
+
+	public String getDsc_questao() {
+		return dsc_questao;
+	}
+
+	public void setDsc_questao(String dsc_questao) {
+		this.dsc_questao = dsc_questao;
+	}
+
+	public integer getIdt_cargo() {
+		return idt_cargo;
+	}
+
+	public void setIdt_cargo(integer idt_cargo) {
+		this.idt_cargo = idt_cargo;
+	}
+
+}

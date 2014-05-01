@@ -1,0 +1,51 @@
+package br.com.projetoquestoesconcurso.model;
+
+import java.io.Serializable;
+
+import android.R.integer;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Questao  implements Parcelable{
+
+	private int idt_questao;
+	private String dsc_questao;
+	private integer idt_cargo;
+
+	public int getIdt_questao() {
+		return idt_questao;
+	}
+
+	public void setIdt_questao(int idt_questao) {
+		this.idt_questao = idt_questao;
+	}
+
+	public String getDsc_questao() {
+		return dsc_questao;
+	}
+
+	public void setDsc_questao(String dsc_questao) {
+		this.dsc_questao = dsc_questao;
+	}
+
+	public integer getIdt_cargo() {
+		return idt_cargo;
+	}
+
+	public void setIdt_cargo(integer idt_cargo) {
+		this.idt_cargo = idt_cargo;
+	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel arg0, int arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

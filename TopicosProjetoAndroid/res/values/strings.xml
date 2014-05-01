@@ -8,5 +8,10 @@
     <string name="btnInciar">Iniciar</string>
     <string name="title_activity_geracao_provas">GeracaoProvas</string>
     <string name="title_activity_questoes">Questões de Concurso</string>
-
+    <string name="radioGrupo"></string>
+    
+    
+    
+    
+    
 </resources>

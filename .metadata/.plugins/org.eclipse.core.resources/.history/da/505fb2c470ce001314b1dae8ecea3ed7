@@ -1,0 +1,64 @@
+package br.com.projetoquestoesconcurso.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Alternativa implements Parcelable {
+
+	private int idt_alternativa;
+	private String dsc_alternativa;
+	private String correta;
+
+	public int getIdt_alternativa() {
+		return idt_alternativa;
+	}
+
+	public void setIdt_alternativa(int idt_alternativa) {
+		this.idt_alternativa = idt_alternativa;
+	}
+
+	public String getDsc_alternativa() {
+		return dsc_alternativa;
+	}
+
+	public void setDsc_alternativa(String dsc_alternativa) {
+		this.dsc_alternativa = dsc_alternativa;
+	}
+
+	public String getCorreta() {
+		return correta;
+	}
+
+	public void setCorreta(String correta) {
+		this.correta = correta;
+	}
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(idt_alternativa);
+		dest.writeString(dsc_alternativa);
+		dest.writeString(correta);
+	}
+
+	private Alternativa(Parcel p) {
+		idt_alternativa = p.readInt();
+		dsc_alternativa = p.readString();
+		dsc_alternativa = p.readString();
+	}
+
+	public static final Parcelable.Creator<Alternativa> CREATOR = new Parcelable.Creator<Alternativa>() {
+
+		public Alternativa createFromParcel(Parcel in) {
+			return new Alternativa(in);
+		}
+
+		public Alternativa[] newArray(int size) {
+			return new Alternativa[size];
+		}
+	};
+
+}
