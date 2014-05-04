@@ -1,0 +1,64 @@
+package br.com.projetoquestoesconcurso;
+
+import java.util.ArrayList;
+
+import br.com.projetoquestoesconcurso.model.Questao;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.text.style.BulletSpan;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+
+public class Questoes_detalhadas extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_questoes_detalhadas);
+
+		Bundle bundle = getIntent().getExtras();
+		Questao questao = (Questao) bundle.get("objeto");
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.questoes_detalhadas, menu);
+		return true;
+	}
+
+	private void gerar(Context cont) {
+		questaoCorrente = currentGame.getNextQuestion();
+
+		if (questaoCorrente == null) {
+			// Toast.makeText(
+			// getApplicationContext(),
+			// "Você ja fez todas as questões disponíveis em nosso banco de dados",
+			// Toast.LENGTH_LONG).show();
+			Log.i("NÃO TEM PROX", "CHAMADA PARA OUTRA ACTIVITY");
+
+			Intent intent = new Intent(cont, Resultado_prova.class);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("objeto", currentGame.getQuestoes());
+			intent.putExtras(bundle);
+
+			startActivity(intent);
+			return;
+		}
+		Log.i("GERAçÃOPROVA",
+				"CHEGOU NA CLASSE GERAÇÂO DE PROVA - 2 tela, Passou do recupera a LISTA");
+		setQuestions();
+
+		Button btnProx = (Button) findViewById(R.id.btnMaps);
+		Button btnCerto = (Button) findViewById(R.id.btnCerto);
+		Button btnErrado = (Button) findViewById(R.id.btnErrado);
+		btnProx.setVisibility(View.INVISIBLE);
+		btnErrado.setVisibility(View.INVISIBLE);
+		btnCerto.setVisibility(View.INVISIBLE);
+	}
+}

@@ -4,21 +4,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-
-import br.com.projetoquestoesconcurso.model.Alternativa;
-import br.com.projetoquestoesconcurso.model.Questao;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import br.com.projetoquestoesconcurso.model.Alternativa;
+import br.com.projetoquestoesconcurso.model.Prova;
+import br.com.projetoquestoesconcurso.model.Questao;
 
 public class Conexao extends SQLiteOpenHelper {
 
@@ -78,9 +75,7 @@ public class Conexao extends SQLiteOpenHelper {
 
 	public void openDataBase() throws SQLException {
 		String myPath = DB_PATH + DB_NAME;
-		// Log.i("Caminho", " " + myPath);
 		myDataBase = SQLiteDatabase.openDatabase(myPath, null, 0);
-		// SQLiteDatabase.OPEN_READONLY);
 	}
 
 	@Override
@@ -98,18 +93,19 @@ public class Conexao extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	}
 
-	public ArrayList<Questao> getQuestionSet() {
+	public ArrayList<Questao> getQuestionSet(int idt_prova) {
 		ArrayList<Questao> questionSet = new ArrayList<Questao>();
 		Log.i("Antes de rodar a query", " obtido." + DB_NAME);
 		try {
 			Cursor c = myDataBase.rawQuery(
-					" select idt_questao, dsc_questao from questoes ", null);
+					" select idt_questao, dsc_questao from questoes where idt_prova =  "
+							+ idt_prova, null);
 
 			Log.i("DEPOIS de rodar a query", " DEPOIS.");
 			// + " ORDER BY RANDOM() LIMIT " + numQ, null);
 			while (c.moveToNext()) {
 				Questao q = new Questao(c.getInt(0), c.getString(1));
-				//q.setAlternativas(getAlternativaPorQuestao(c.getInt(0)));
+				// q.setAlternativas(getAlternativaPorQuestao(c.getInt(0)));
 				questionSet.add(q);
 				Log.i("Resultado Query", " idt_questao: " + q.getIdt_questao()
 						+ " dsc_questao: " + q.getDsc_questao());
@@ -131,13 +127,9 @@ public class Conexao extends SQLiteOpenHelper {
 		try {
 			Cursor c = myDataBase.rawQuery(query, null);
 			Log.i(" query ALTERNATIVAS", " DEPOIS.");
-			// + " ORDER BY RANDOM() LIMIT " + numQ, null);
 			while (c.moveToNext()) {
-				Alternativa a = new Alternativa(c.getInt(0),c.getString(1), c.getString(2));
-//				a.setIdt_alternativa(c.getInt(0));
-//				a.setDsc_alternativa(c.getString(1));
-//				a.setCorreta(c.getString(2));
-
+				Alternativa a = new Alternativa(c.getInt(0), c.getString(1),
+						c.getString(2));
 				alternativas.add(a);
 			}
 		} catch (SQLiteException s) {
@@ -147,5 +139,30 @@ public class Conexao extends SQLiteOpenHelper {
 			Log.i("EEERRO  Recuperação Alternativas", s.getMessage());
 		}
 		return alternativas;
+	}
+
+	public ArrayList<Prova> listaProvas() {
+		ArrayList<Prova> provas = new ArrayList<Prova>();
+
+		String query = " select p.idt_prova, dsc_prova, ano, dsc_banca, dsc_cargo from provas p   "
+				+ " inner join categorias c on c.idt_categoria = p.idt_categoria "
+				+ " inner join cargos ca on ca.idt_cargo = p.idt_cargo       "
+				+ " inner join banca b on b.idt_banca = p.idt_banca";
+		try {
+			Cursor c = myDataBase.rawQuery(query, null);
+			while (c.moveToNext()) {
+				Prova a = new Prova();
+				a.setIdt_prova(c.getInt(0));
+				a.setDsc_prova(c.getString(1));
+				a.setAno(c.getInt(2));
+				a.setDsc_banca(c.getString(3));
+				a.setDsc_cargo(c.getString(4));
+
+				provas.add(a);
+			}
+		} catch (SQLiteException s) {
+			s.printStackTrace();
+		}
+		return provas;
 	}
 }

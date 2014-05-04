@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.database.SQLException;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import br.com.projetoquestoesconcurso.List.QuestoesList;
 import br.com.projetoquestoesconcurso.conexao.Conexao;
 import br.com.projetoquestoesconcurso.model.Questao;
@@ -22,10 +27,16 @@ public class GeracaoProvas extends Activity {
 	private QuestoesList currentGame = new QuestoesList();
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.geracao_provas, menu);
+		return true;
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_geracao_provas);
-		Log.i("GERAçÃOPROVA", "Antes de pegar a questão - ");
 
 		ArrayList<Questao> questions = (ArrayList<Questao>) getIntent()
 				.getExtras().getSerializable("objeto");
@@ -34,21 +45,37 @@ public class GeracaoProvas extends Activity {
 		recuperaAlternativa(questions);
 		currentGame.setQuestoes(questions);
 
+		gerar(this);
+	}
+
+	private void gerar(Context cont) {
 		questaoCorrente = currentGame.getNextQuestion();
 
+		if (questaoCorrente == null) {
+			// Toast.makeText(
+			// getApplicationContext(),
+			// "Você ja fez todas as questões disponíveis em nosso banco de dados",
+			// Toast.LENGTH_LONG).show();
+			Log.i("NÃO TEM PROX", "CHAMADA PARA OUTRA ACTIVITY");
+
+			Intent intent = new Intent(cont, Resultado_prova.class);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("objeto", currentGame.getQuestoes());
+			intent.putExtras(bundle);
+
+			startActivity(intent);
+			return;
+		}
 		Log.i("GERAçÃOPROVA",
 				"CHEGOU NA CLASSE GERAÇÂO DE PROVA - 2 tela, Passou do recupera a LISTA");
-		// Button nextBtn = (Button) findViewById(R.id.btnProx);
-		// nextBtn.setOnClickListener(this);
 		setQuestions();
 
-		Button btnProx = (Button) findViewById(R.id.btnProx);
+		Button btnProx = (Button) findViewById(R.id.btnprox);
 		Button btnCerto = (Button) findViewById(R.id.btnCerto);
 		Button btnErrado = (Button) findViewById(R.id.btnErrado);
 		btnProx.setVisibility(View.INVISIBLE);
 		btnErrado.setVisibility(View.INVISIBLE);
 		btnCerto.setVisibility(View.INVISIBLE);
-
 	}
 
 	private void recuperaAlternativa(ArrayList<Questao> questions) {
@@ -73,14 +100,9 @@ public class GeracaoProvas extends Activity {
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.geracao_provas, menu);
-		return true;
-	}
-
 	private void setQuestions() {
+		Button btnValida = (Button) findViewById(R.id.btnvalidar);
+		btnValida.setVisibility(View.VISIBLE);
 		// set the question text from current question
 		String question = questaoCorrente.getDsc_questao();
 		TextView qText = (TextView) findViewById(R.id.txtQuestao);
@@ -110,10 +132,19 @@ public class GeracaoProvas extends Activity {
 		opcao5.setText(questaoCorrente.getAlternativas().get(4)
 				.getDsc_alternativa());
 
+		// desmarcarRadios
+		desmarcaRadios();
+	}
+
+	private void desmarcaRadios() {
+
+		RadioGroup r1 = (RadioGroup) findViewById(R.id.radioAlternativas);
+		r1.clearCheck();
+
 	}
 
 	public void geraQuestao(View view) {
-
+		gerar(view.getContext());
 	}
 
 	public void validaQuestao(View view) {
@@ -122,33 +153,45 @@ public class GeracaoProvas extends Activity {
 		int marcado = -1;
 		switch (tipos.getCheckedRadioButtonId()) {
 		case R.id.resp1:
-			marcado = 0;
-			break;
-		case R.id.resp2:
 			marcado = 1;
 			break;
-		case R.id.resp3:
+		case R.id.resp2:
 			marcado = 2;
 			break;
-		case R.id.resp4:
+		case R.id.resp3:
 			marcado = 3;
-
-		case R.id.resp5:
+			break;
+		case R.id.resp4:
 			marcado = 4;
+			break;
+		case R.id.resp5:
+			marcado = 5;
 			break;
 
 		}
-		Button btnProx = (Button) findViewById(R.id.btnProx);
-		Button btnCerto = (Button) findViewById(R.id.btnCerto);
-		Button btnErrado = (Button) findViewById(R.id.btnErrado);
-		if (marcado == currentGame.getPosicaoCerta()) {
-			btnProx.setVisibility(View.VISIBLE);
-			btnCerto.setVisibility(View.VISIBLE);
-			btnErrado.setVisibility(View.INVISIBLE);
+		if (marcado == -1) {
+			Toast.makeText(getApplicationContext(), "É preciso marcar um item",
+					Toast.LENGTH_LONG).show();
+			return;
 		} else {
-			btnProx.setVisibility(View.INVISIBLE);
-			btnErrado.setVisibility(View.VISIBLE);
-			btnCerto.setVisibility(View.INVISIBLE);
+			// setando a alternativa que o usuário marcou, para gerar a tela de
+			// Resultados.
+			questaoCorrente.setAlternativaMarcadaUsuario(marcado);
+
+			Button btnProx = (Button) findViewById(R.id.btnprox);
+			Button btnCerto = (Button) findViewById(R.id.btnCerto);
+			Button btnErrado = (Button) findViewById(R.id.btnErrado);
+			if (marcado == currentGame.setaAlternativaCorreta()) {
+				btnCerto.setVisibility(View.VISIBLE);
+				btnErrado.setVisibility(View.INVISIBLE);
+			} else {
+				btnErrado.setVisibility(View.VISIBLE);
+				btnCerto.setVisibility(View.INVISIBLE);
+			}
+			btnProx.setVisibility(View.VISIBLE);
+			Button btnValida = (Button) findViewById(R.id.btnvalidar);
+			btnValida.setVisibility(View.INVISIBLE);
+
 		}
 	}
 

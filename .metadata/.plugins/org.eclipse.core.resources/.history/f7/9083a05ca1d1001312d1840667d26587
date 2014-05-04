@@ -1,0 +1,118 @@
+package br.com.projetoquestoesconcurso;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.database.SQLException;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import br.com.projetoquestoesconcurso.adapter.ListaProvasAdapter;
+import br.com.projetoquestoesconcurso.conexao.Conexao;
+import br.com.projetoquestoesconcurso.model.Prova;
+import br.com.projetoquestoesconcurso.model.Questao;
+
+public class Lista_provas extends Activity implements OnItemClickListener {
+	private ListaProvasAdapter provasAdapter;
+	private ListView listView;
+	ArrayList<Prova> listaDeProvas;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_lista_provas);
+		listView = (ListView) findViewById(R.id.minha_lista);
+		listaDeProvas = getProvasFromDb();
+
+		provasAdapter = new ListaProvasAdapter(this, listaDeProvas);
+		listView.setAdapter(provasAdapter);
+
+		listView.setOnItemClickListener(this);
+
+	}
+
+	private ArrayList<Prova> getProvasFromDb() throws Error {
+
+		Conexao myDbHelper = new Conexao(this);
+		try {
+			myDbHelper.createDataBase();
+		} catch (IOException ioe) {
+			throw new Error("Unable to create database");
+		}
+		try {
+			myDbHelper.openDataBase();
+		} catch (SQLException sqle) {
+			throw sqle;
+		}
+		ArrayList<Prova> provas = myDbHelper.listaProvas();
+		myDbHelper.close();
+		return provas;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.lista_provas, menu);
+		return true;
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int posicao,
+			long arg3) {
+		// TODO Auto-generated method stub
+		// Toast.makeText(
+		// this,
+		// "Você Clicou em: " + listaDeProvas.get(arg2).getDsc_prova()
+		// + "arg3" + arg3, Toast.LENGTH_LONG).show();
+		iniciar2(arg1, posicao);
+	}
+
+	private void iniciar2(View view, int posicao) {
+
+		Intent i;
+		// Pegando Todas as QUestões do SQLite e passando para a outra tela
+		ArrayList<Questao> questions = getQuestaoFromDb(posicao);
+		if (questions == null) {
+			Toast.makeText(getBaseContext(),
+					"Não existe questões cadastradas para essa prova!",
+					Toast.LENGTH_LONG).show();
+			return;
+		}
+		Log.i("QUESTOES", "PASSOU PELO METODO DE PEGAR AS QUESTOES DO BANCO");
+		i = new Intent(this, GeracaoProvas.class);
+
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("objeto", questions);
+		i.putExtras(bundle);
+
+		startActivity(i);
+	}
+
+	private ArrayList<Questao> getQuestaoFromDb(int posicao) throws Error {
+
+		Conexao myDbHelper = new Conexao(this);
+		try {
+			myDbHelper.createDataBase();
+		} catch (IOException ioe) {
+			throw new Error("Unable to create database");
+		}
+		try {
+			myDbHelper.openDataBase();
+		} catch (SQLException sqle) {
+			throw sqle;
+		}
+		ArrayList<Questao> questions = myDbHelper.getQuestionSet(listaDeProvas
+				.get(posicao).getIdt_prova());
+		myDbHelper.close();
+		return questions;
+	}
+
+}

@@ -13,13 +13,23 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="onClickNext" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
-			<item value="onClickStartQuiz"/>
-			<item value="onClickNext"/>
-			<item value="answer"/>
+			<item value="textViewNomeprova"/>
+			<item value="textNomeProva"/>
+			<item value="des"/>
+			<item value="round"/>
+			<item value="right"/>
+			<item value="wrong"/>
+			<item value="Pesquisar"/>
+			<item value="zombie"/>
 		</list>
 		<list key="replacehistory">
+			<item value="txtErrado"/>
+			<item value="txtAcerto"/>
+			<item value="acerto"/>
+			<item value="errado"/>
+			<item value="prova"/>
 			<item value="resposta"/>
 		</list>
 	</section>

@@ -1,0 +1,49 @@
+package br.com.projetoquestoesconcurso;
+
+import java.util.ArrayList;
+
+import br.com.projetoquestoesconcurso.List.QuestoesList;
+import br.com.projetoquestoesconcurso.adapter.ListaProvasAdapter;
+import br.com.projetoquestoesconcurso.model.Prova;
+import br.com.projetoquestoesconcurso.model.Questao;
+import android.os.Bundle;
+import android.app.Activity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Menu;
+import android.widget.EditText;
+import android.widget.ListView;
+
+public class Resultado_prova extends Activity {
+
+	private ListaProvasAdapter provasAdapter;
+	private ListView listView_resultados;
+	ArrayList<Prova> listaDeProvas;
+	private ArrayList<Prova> pesquisaEncontrado = new ArrayList<Prova>();
+	private QuestoesList currentGame = new QuestoesList();
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_resultado_prova);
+
+		ArrayList<Questao> questions = (ArrayList<Questao>) getIntent()
+				.getExtras().getSerializable("objeto");
+
+		listView_resultados = (ListView) findViewById(R.id.lista__geral_resultado);
+
+		provasAdapter = new ListaProvasAdapter(this, listaDeProvas);
+		listView_resultados.setAdapter(provasAdapter);
+
+		currentGame.setQuestoes(questions);
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.resultado_prova, menu);
+		return true;
+	}
+
+}

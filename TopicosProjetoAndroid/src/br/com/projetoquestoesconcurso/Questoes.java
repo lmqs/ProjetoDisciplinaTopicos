@@ -31,37 +31,11 @@ public class Questoes extends Activity {
 		getMenuInflater().inflate(R.menu.questoes, menu);
 		return true;
 	}
-
+	//Chama a Intent da Lista das Provas
 	public void iniciar(View view) {
-
-		Intent i;
-		// Pegando Todas as QUestões do SQLite e passando para a outra tela
-		ArrayList<Questao> questions = getQuestionSetFromDb();
-		Log.i("QUESTOES", "PASSOU PELO METODO DE PEGAR AS QUESTOES DO BANCO");
-		i = new Intent(this, GeracaoProvas.class);
-
-		Bundle bundle = new Bundle();
-		bundle.putSerializable("objeto", questions);
-		i.putExtras(bundle);
-
+		Intent i = new Intent(this, Lista_provas.class);
 		startActivity(i);
 	}
 
-	private ArrayList<Questao> getQuestionSetFromDb() throws Error {
-
-		Conexao myDbHelper = new Conexao(this);
-		try {
-			myDbHelper.createDataBase();
-		} catch (IOException ioe) {
-			throw new Error("Unable to create database");
-		}
-		try {
-			myDbHelper.openDataBase();
-		} catch (SQLException sqle) {
-			throw sqle;
-		}
-		ArrayList<Questao> questions = myDbHelper.getQuestionSet();
-		myDbHelper.close();
-		return questions;
-	}
+	
 }

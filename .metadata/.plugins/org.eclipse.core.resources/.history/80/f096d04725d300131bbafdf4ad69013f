@@ -1,0 +1,8 @@
+package br.com.projetoquestoesconcurso.adapter;
+
+import android.widget.ArrayAdapter;
+import br.com.projetoquestoesconcurso.model.Prova;
+
+public class ListaResultadosProvaAdapter  extends ArrayAdapter<Prova> {{
+
+}

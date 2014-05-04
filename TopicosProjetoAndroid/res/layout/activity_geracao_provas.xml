@@ -20,24 +20,29 @@
 
         <RadioButton
             android:id="@+id/resp1"
-            android:checked="false" />
+            android:checked="false"
+            android:textSize="12sp"
+            android:visibility="visible" />
 
         <RadioButton
             android:id="@+id/resp2"
-            android:checked="false" />
+            android:checked="false"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/resp3"
-            android:checked="false" />
+            android:checked="false"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/resp4"
-            android:checked="false" />
+            android:checked="false"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/resp5"
-            android:checked="false" />
-
+            android:checked="false"
+            android:textSize="12sp" />
     </RadioGroup>
 
     <TextView
@@ -50,19 +55,6 @@
         android:layout_alignRight="@+id/radioAlternativas" />
 
     <Button
-        android:id="@+id/button1"
-        style="@style/DashboardButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnProx"
-        android:layout_marginRight="34dp"
-        android:layout_toLeftOf="@+id/btnProx"
-        android:background="@android:color/transparent"
-        android:drawableTop="@drawable/validar"
-        android:onClick="validaQuestao"
-        android:text="Validar" />
-
-    <Button
         android:id="@+id/btnCerto"
         style="@style/DashboardButton"
         android:layout_width="wrap_content"
@@ -71,7 +63,18 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/certo"
-        android:text="Acertou" />
+        android:text="@string/btnAcerto" />
+
+    <Button
+        android:id="@+id/btnprox"
+        style="@style/DashboardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/radioAlternativas"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/prox"
+        android:onClick="geraQuestao" />
 
     <Button
         android:id="@+id/btnErrado"
@@ -83,17 +86,19 @@
         android:layout_alignLeft="@+id/radioAlternativas"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/errado"
-        android:text="Errou" />
+        android:text="@string/btnerrar" />
 
     <Button
-        android:id="@+id/btnProx"
+        android:id="@+id/btnvalidar"
         style="@style/DashboardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/radioAlternativas"
+        android:layout_alignBaseline="@+id/btnCerto"
+        android:layout_alignBottom="@+id/btnCerto"
+        android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
-        android:drawableTop="@drawable/prox"
-        android:onClick="geraQuestao" />
+        android:drawableTop="@drawable/validar"
+        android:onClick="validaQuestao"
+        android:text="@string/btnvalidar" />
 
 </RelativeLayout>

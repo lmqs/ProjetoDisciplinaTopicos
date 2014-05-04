@@ -10,7 +10,7 @@
     tools:context=".Questoes" >
 
     <Button
-        android:id="@+id/btnProx"
+        android:id="@+id/btnMaps"
         style="@style/DashboardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,33 +20,34 @@
         android:layout_marginRight="42dp"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/maps"
-        android:text="Onde Estamos" />
+        android:text="@string/btnMaps" />
 
     <Button
         android:id="@+id/btnInfor"
         style="@style/DashboardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnProx"
-        android:layout_alignBottom="@+id/btnProx"
+        android:layout_alignBaseline="@+id/btnMaps"
+        android:layout_alignBottom="@+id/btnMaps"
         android:layout_marginRight="21dp"
-        android:layout_toLeftOf="@+id/btnProx"
+        android:layout_toLeftOf="@+id/btnMaps"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/info"
-        android:text="Informações" />
+        android:text="@string/btnInfo" />
 
     <Button
         android:id="@+id/btnIniciar"
         style="@style/DashboardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnInfor"
         android:layout_alignLeft="@+id/btnInfor"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="108dp"
+        android:layout_marginBottom="93dp"
+        android:layout_marginLeft="14dp"
         android:background="@android:color/transparent"
-        android:onClick="iniciar"
         android:drawableTop="@drawable/iniciar"
-        android:text="Iniciar" />
+        android:onClick="iniciar"
+        android:text="@string/btnInciar" />
 
     <Button
         android:id="@+id/btnResultados"
@@ -55,9 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnIniciar"
         android:layout_alignBottom="@+id/btnIniciar"
-        android:layout_alignLeft="@+id/btnProx"
+        android:layout_alignLeft="@+id/btnMaps"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/resultados"
-        android:text="Resultados" />
+        android:text="@string/btnResultado" />
 
 </RelativeLayout>

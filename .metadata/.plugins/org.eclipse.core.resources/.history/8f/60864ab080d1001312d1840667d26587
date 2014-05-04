@@ -1,0 +1,5 @@
+package br.com.projetoquestoesconcurso.model;
+
+public class Prova {
+
+}

@@ -35,6 +35,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="br.com.projetoquestoesconcurso.Resultado_prova"
+            android:label="@string/title_activity_resultado_prova" >
+        </activity>
+        <activity
+            android:name="br.com.projetoquestoesconcurso.Lista_provas"
+            android:label="@string/title_activity_lista_provas" >
+        </activity>
+        <activity
+            android:name="br.com.projetoquestoesconcurso.Questoes_detalhadas"
+            android:label="@string/title_activity_questoes_detalhadas" >
+        </activity>
     </application>
 
 </manifest>

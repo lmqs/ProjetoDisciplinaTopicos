@@ -1,0 +1,90 @@
+package br.com.projetoquestoesconcurso.List;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.os.Parcelable;
+import br.com.projetoquestoesconcurso.model.Questao;
+
+public class QuestoesList {
+
+	private int numRounds;
+	private int difficulty;
+	private int acerto;
+	private int errado;
+	private int round;
+	private int posicaoCerta;
+	private ArrayList<Questao> questoes = new ArrayList<Questao>();
+
+	public Questao getNextQuestion() {
+		if (questoes.size() <= getRound()) {
+			return null;
+		}
+		// get the question
+		Questao next = questoes.get(this.getRound());
+		// update the round number to the next round
+		setaAlternativaCorreta();
+		this.setRound(this.getRound() + 1);
+
+		return next;
+	}
+
+	private void setaAlternativaCorreta() {
+		for (int i = 0; i < questoes.get(getRound()).getAlternativas().size(); i++) {
+			if (questoes.get(getRound()).getAlternativas().get(i).getCorreta()
+					.equals("S")) {
+				setPosicaoCerta(questoes.get(getRound()).getAlternativas()
+						.get(i).getIdt_alternativa());
+			}
+		}
+	}
+
+	public int getNumRounds() {
+		return numRounds;
+	}
+
+	public void setNumRounds(int numRounds) {
+		this.numRounds = numRounds;
+	}
+
+	public int getacerto() {
+		return acerto;
+	}
+
+	public void setacerto(int acerto) {
+		this.acerto = acerto;
+	}
+
+	public int geterrado() {
+		return errado;
+	}
+
+	public void seterrado(int errado) {
+		this.errado = errado;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
+	}
+
+	public ArrayList<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public void setQuestoes(ArrayList<Questao> questoes) {
+		this.questoes = questoes;
+	}
+
+	public void setPosicaoCerta(int posicaoCerta) {
+		this.posicaoCerta = posicaoCerta;
+	}
+
+	public int getPosicaoCerta() {
+		return posicaoCerta;
+	}
+
+}

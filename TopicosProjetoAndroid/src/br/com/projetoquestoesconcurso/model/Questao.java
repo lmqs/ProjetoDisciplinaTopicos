@@ -10,8 +10,25 @@ public class Questao implements Serializable {
 	private int idt_questao;
 	private String dsc_questao;
 	private integer idt_cargo;
-
 	private ArrayList<Alternativa> alternativas;
+	private int alternativaMarcadaUsuario;
+
+	public int setaAlternativaCorreta() {
+		for (int i = 0; i < alternativas.size(); i++) {
+			if (alternativas.get(i).getCorreta().equalsIgnoreCase("S")) {
+				return alternativas.get(i).getIdt_alternativa();
+			}
+		}
+		return -1;
+	}
+
+	public void setAlternativaMarcadaUsuario(int alternativaMarcadaUsuario) {
+		this.alternativaMarcadaUsuario = alternativaMarcadaUsuario;
+	}
+
+	public int getAlternativaMarcadaUsuario() {
+		return alternativaMarcadaUsuario;
+	}
 
 	public ArrayList<Alternativa> getAlternativas() {
 		return alternativas;
@@ -50,4 +67,7 @@ public class Questao implements Serializable {
 		this.idt_cargo = idt_cargo;
 	}
 
+	public String alternativaText(int i) {
+		return (i == 1 ? "A" : i == 2 ? "B" : i == 3 ? "C" : i == 4 ? "D" : "E");
+	}
 }

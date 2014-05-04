@@ -1,0 +1,28 @@
+1398970781672	Rename field 'button1'
+1398970902195	Extracts string 'null' into R.string.btnvalidar
+1398970930560	Extracts string 'null' into R.string.btnerrar
+1398970957560	Extracts string 'null' into R.string.btnAcerto
+1398986488591	Rename field 'minha_lista'
+1398986525866	Rename field 'action_settings'
+1398993570242	Rename field 'text_view_nome_zombie'
+1398993593310	Rename field 'text_view_idade_zombie'
+1398996360523	Extracts string 'null' into R.string.btnResultado
+1398996379132	Extracts string 'null' into R.string.btnInfo
+1398996400764	Extracts string 'null' into R.string.btnMaps
+1398996417470	Rename field 'btnProx'
+1398998326945	Rename field 'eText'
+1398998339580	Extracts string 'null' into R.string.lblPesquisar
+1399168514041	Rename field 'txtMarcado'
+1399168529634	Extracts string 'null' into R.string.lblMarcado
+1399168566375	Rename field 'txtCerto'
+1399168577968	Extracts string 'null' into R.string.lblAcerto
+1399169166210	Rename field 'lblMarcado'
+1399169302743	Extracts string 'null' into R.string.lblcodigo
+1399171674371	Delete element
+1399174361582	Rename field 'Cod'
+1399174375366	Rename field 'lblmedia'
+1399174393331	Extracts string 'null' into R.string.lblMedia
+1399175344355	Delete element
+1399176101020	Rename field 'btnValidar'
+1399176115685	Extracts string 'null' into R.string.btnFechar
+1399245431649	Delete element

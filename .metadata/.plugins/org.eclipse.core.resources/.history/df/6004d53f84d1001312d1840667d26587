@@ -1,0 +1,20 @@
+package br.com.projetoquestoesconcurso.adapter;
+
+import java.util.List;
+
+import android.content.Context;
+import android.widget.ArrayAdapter;
+import br.com.projetoquestoesconcurso.model.Prova;
+
+public class ListaProvasAdapter extends ArrayAdapter<Prova> {
+
+	private Context context;
+	private List<Prova> provas = null;
+
+	public ListaProvasAdapter(Context context, List<Prova> provas) {
+		super(context, 0, provas);
+		this.provas = provas;
+		this.context = context;
+	}
+
+}

@@ -1,0 +1,17 @@
+package br.com.projetoquestoesconcurso.adapter;
+
+import java.util.List;
+
+import android.content.Context;
+import android.widget.ArrayAdapter;
+import br.com.projetoquestoesconcurso.model.Prova;
+import br.com.projetoquestoesconcurso.model.Questao;
+
+public class ListaResultadosProvaAdapter extends ArrayAdapter<Questao> {
+
+	
+	private Context context;
+	private List<Questao> provas = null;
+	
+	
+}

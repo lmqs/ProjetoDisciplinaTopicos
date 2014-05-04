@@ -1,0 +1,51 @@
+package br.com.projetoquestoesconcurso.model;
+
+public class Prova {
+
+	private int idt_prova;
+	private String dsc_prova;
+	private int ano;
+	private String dsc_banca;
+	private String dsc_cargo;
+
+	public int getIdt_prova() {
+		return idt_prova;
+	}
+
+	public void setIdt_prova(int idt_prova) {
+		this.idt_prova = idt_prova;
+	}
+
+	public String getDsc_prova() {
+		return dsc_prova;
+	}
+
+	public void setDsc_prova(String dsc_prova) {
+		this.dsc_prova = dsc_prova;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+	public String getDsc_banca() {
+		return dsc_banca;
+	}
+
+	public void setDsc_banca(String dsc_banca) {
+		this.dsc_banca = dsc_banca;
+	}
+
+	public String getDsc_cargo() {
+		return dsc_cargo;
+	}
+
+	public void setDsc_cargo(String dsc_cargo) {
+		this.dsc_cargo = dsc_cargo;
+	}
+
+}

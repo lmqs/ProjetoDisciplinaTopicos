@@ -1,0 +1,32 @@
+package br.com.projetoquestoesconcurso;
+
+import java.util.ArrayList;
+
+import br.com.projetoquestoesconcurso.model.Questao;
+import android.os.Bundle;
+import android.app.Activity;
+import android.text.style.BulletSpan;
+import android.view.Menu;
+
+public class Questoes_detalhadas extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_questoes_detalhadas);
+
+		Bundle bundle= getIntent().getExtras();
+		
+		Questao questao = (Questao)bundle.get("objeto");
+		
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.questoes_detalhadas, menu);
+		return true;
+	}
+
+}

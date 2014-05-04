@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Questões de Concurso</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lbltitulo">Questões para concurso</string>
+    <string name="btnInciar">Iniciar</string>
+    <string name="title_activity_geracao_provas">GeracaoProvas</string>
+    <string name="title_activity_questoes">Questões de Concurso</string>
+    <string name="radioGrupo"></string>
+    <string name="btnvalidar">Validar</string>
+    <string name="btnerrar">Errou</string>
+    <string name="btnAcerto">Acertou</string>
+    <string name="title_activity_resultado_prova">Resultado da Prova</string>
+    <string name="title_activity_lista_provas">Lista de Provas</string>
+    <string name="btnResultado">Resultados</string>
+    <string name="btnInfo">Informações</string>
+
+</resources>

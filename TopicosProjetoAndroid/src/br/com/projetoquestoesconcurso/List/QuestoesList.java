@@ -8,57 +8,21 @@ import br.com.projetoquestoesconcurso.model.Questao;
 
 public class QuestoesList {
 
+	private int round;
+	private ArrayList<Questao> questoes = new ArrayList<Questao>();
+
 	public Questao getNextQuestion() {
+		if (questoes.size() <= getRound()) {
+			return null;
+		}
 
-		// get the question
 		Questao next = questoes.get(this.getRound());
-		// update the round number to the next round
-		setaAlternativaCorreta();
 		this.setRound(this.getRound() + 1);
-
 		return next;
 	}
 
-	private void setaAlternativaCorreta() {
-		for (int i = 0; i < questoes.get(getRound()).getAlternativas().size(); i++) {
-			if (questoes.get(getRound()).getAlternativas().get(i).getCorreta()
-					.equals("S")) {
-				setPosicaoCerta(i);
-			}
-		}
-
-	}
-
-	public int getNumRounds() {
-		return numRounds;
-	}
-
-	public void setNumRounds(int numRounds) {
-		this.numRounds = numRounds;
-	}
-
-	public int getDifficulty() {
-		return difficulty;
-	}
-
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
-	}
-
-	public int getRight() {
-		return right;
-	}
-
-	public void setRight(int right) {
-		this.right = right;
-	}
-
-	public int getWrong() {
-		return wrong;
-	}
-
-	public void setWrong(int wrong) {
-		this.wrong = wrong;
+	public int setaAlternativaCorreta() {
+		return questoes.get(getRound() - 1).setaAlternativaCorreta();
 	}
 
 	public int getRound() {
@@ -76,22 +40,5 @@ public class QuestoesList {
 	public void setQuestoes(ArrayList<Questao> questoes) {
 		this.questoes = questoes;
 	}
-
-	private int numRounds;
-	private int difficulty;
-	private int right;
-	private int wrong;
-	private int round;
-	private int posicaoCerta;
-
-	public void setPosicaoCerta(int posicaoCerta) {
-		this.posicaoCerta = posicaoCerta;
-	}
-
-	public int getPosicaoCerta() {
-		return posicaoCerta;
-	}
-
-	private ArrayList<Questao> questoes = new ArrayList<Questao>();
 
 }
